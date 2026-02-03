@@ -11,12 +11,45 @@
 }
 *{box-sizing:border-box}
 body{font-family:Inter, system-ui, Arial, sans-serif;margin:0;background:var(--bg);color:#222}
-.site-header{border-bottom:1px solid var(--border);padding:12px 20px;background:#fff;position:sticky;top:0;z-index:10}
-.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.brand{font-weight:700;font-size:18px;color:#000}
-.search{flex:1}
-.search input{width:100%;max-width:400px;padding:10px 16px;border-radius:24px;border:1px solid var(--border);font-size:14px;background:#f9f9f9}
-.actions{display:flex;gap:8px}
+.site-header{border-bottom:1px solid var(--border);padding:16px 20px;background:#fff;position:sticky;top:0;z-index:10}
+.header-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:#000;flex-shrink:0}
+.logo img{width:120px;height:auto;display:block}
+.kategori-wrapper{position:relative;flex-shrink:0}
+.kategori-btn{background:transparent;border:none;padding:8px 12px;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:6px;font-weight:500;color:#333;flex-shrink:0}
+.kategori-btn:hover{background:#f5f5f5;border-radius:4px}
+.kategori-btn span:last-child{font-size:12px;transition:transform 0.2s}
+.kategori-btn span:last-child.open{transform:rotate(180deg)}
+
+/* Mega-menu dropdown */
+.kategori-dropdown{position:fixed;left:0;right:0;top:64px;background:#fff;border-top:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.06);z-index:101;padding:28px 20px;display:flex;gap:32px;align-items:flex-start}
+.kategori-left{width:260px;flex-shrink:0;display:flex;flex-direction:column;gap:18px;padding-right:24px}
+.segmented{display:flex;gap:8px;background:#f3f3f3;padding:6px;border-radius:999px}
+.seg-btn{flex:1;padding:10px;border-radius:999px;border:none;background:transparent;cursor:pointer;font-weight:600}
+.seg-btn.active{background:#333;color:#fff}
+.kategori-list h4{margin:0 0 12px;font-size:16px}
+.kategori-sections{display:flex;flex:1;gap:40px;padding-left:24px;border-left:1px solid var(--border)}
+.kategori-section{min-width:240px}
+.kategori-section h4{font-size:16px;margin:0 0 18px;font-weight:700}
+.kategori-section .kategori-item, .kategori-list .kategori-item{display:block;padding:8px 0;color:#333;text-decoration:none}
+.kategori-item:hover{color:var(--accent)}
+
+/* backdrop behind mega-menu */
+.mega-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.06);z-index:100}
+
+@media (max-width:768px){
+  .kategori-dropdown{position:fixed;left:0;right:0;top:64px;padding:16px;flex-direction:column}
+  .kategori-left{width:100%;padding-right:0}
+  .kategori-sections{border-left:none;padding-left:0;gap:16px}
+  .kategori-section{min-width:0}
+}
+.search{flex:1;display:flex;align-items:center;gap:12px;background:#f9f9f9;padding:10px 16px;border-radius:24px;border:1px solid var(--border);min-width:300px}
+.search svg{width:18px;height:18px;color:#999;flex-shrink:0}
+.search input{flex:1;border:none;background:transparent;padding:0;font-size:14px;outline:none}
+.search input::placeholder{color:#999}
+.cart-btn{background:transparent;border:none;cursor:pointer;padding:8px;display:flex;align-items:center;justify-content:center;color:#333;flex-shrink:0}
+.cart-btn:hover{background:#f5f5f5;border-radius:4px}
+.actions{display:flex;gap:12px;flex-shrink:0}
 .actions .btn{margin-left:0}
 .btn{padding:8px 16px;border-radius:8px;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:14px;font-weight:500}
 .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -199,24 +232,34 @@ body{font-family:Inter, system-ui, Arial, sans-serif;margin:0;background:var(--b
 @media (max-width:768px){
   .product-grid{grid-template-columns:1fr;gap:16px}
   .left-col{position:static}
-  .search input{max-width:200px}
+  .search{min-width:auto;flex:1}
+  .search input{max-width:100%}
   .header-inner{gap:8px}
   .actions{display:none}
+  .kategori-btn{display:none}
   .related-grid{grid-template-columns:repeat(3,1fr);gap:12px}
   .mobile-hamburger{display:inline-flex}
-  .brand{flex:1;font-size:16px}
+  .logo span{display:none}
   .breadcrumbs{font-size:11px}
   .title{font-size:20px}
   .price{font-size:18px}
+
+  /* Responsive logo sizing */
+  .logo img{width:90px;height:auto}
 }
 
 @media (max-width:480px){
   .container{padding:0 12px}
   .product-grid{grid-template-columns:1fr}
   .header-inner{gap:6px;padding:0 12px}
-  .brand{font-size:14px}
+  .logo span{display:none}
+  .search{min-width:140px}
   .search input{font-size:12px}
+  .cart-btn svg{width:20px;height:20px}
   .related-grid{grid-template-columns:repeat(2,1fr)}
   .actions-row{flex-direction:column}
   .actions-row .btn{width:100%}
+
+  /* Smaller logo on very small screens */
+  .logo img{width:72px;height:auto}
 }
